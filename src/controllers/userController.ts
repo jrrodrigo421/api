@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import UserModel from '../models/user';
 
 export const getUsers = async (req: Request, res: Response) => {
-  console.log('loooooou');
   
   try {
     const users = await UserModel.find();
@@ -12,4 +11,3 @@ export const getUsers = async (req: Request, res: Response) => {
   }
 };
 
-// Outros controladores conforme necessário

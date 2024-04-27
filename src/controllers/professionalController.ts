@@ -3,12 +3,15 @@ import ProfessionalModel, { Professional } from '../models/professional';
 
 
 export const getProfessionals = async (req: Request, res: Response) => {
-  console.log('alooou');
+  console.log('buscando profissionais');
   
   
   try {
     const professionals = await ProfessionalModel.find();
-    res.json(professionals);
+    var teste = res.json(professionals);
+  console.log('busca concluida');
+  console.log('Profissionais: ', professionals);
+    
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
@@ -19,7 +22,6 @@ export const postProfessionals = async (req: Request, res: Response) => {
   console.log('criando um novo profissional');
   
   try {
-    // Extrai os dados do corpo da requisição
     const { name, category, location, availability } = req.body;
 
     
@@ -28,7 +30,6 @@ export const postProfessionals = async (req: Request, res: Response) => {
       category: req.body.category,
       location: req.body.location,
       availability: req.body.availability,
-      // Adicione outros campos conforme necessário
     } as Professional; 
 
     // Cria um novo documento Professional usando os dados fornecidos
@@ -37,8 +38,9 @@ export const postProfessionals = async (req: Request, res: Response) => {
     // Salva o novo profissional no banco de dados
     const savedProfessional = await newProfessional.save();
 
-    // Retorna o novo profissional como resposta
     res.status(201).json(savedProfessional);
+  console.log('profissional criado com sucesso');
+    
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
