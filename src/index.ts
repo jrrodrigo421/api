@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import professionalRoutes from './routes/professionalRoutes';
 import userRoutes from './routes/userRoutes';
 import authRoutes from './routes/authRoutes';
+import morgan from 'morgan';
 
 const app = express();
 const cors = require('cors');
@@ -16,6 +17,9 @@ app.use(cors());
 
 // Middleware para permitir o parsing de JSON
 app.use(express.json());
+
+// Middleware para registrar logs de solicitação
+app.use(morgan('dev'));
 
 
 // Rotas
