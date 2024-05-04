@@ -54,7 +54,7 @@ export const loginAuth = async (req: Request, res: Response) => {
     return res.status(500).json({ message: 'JWT_SECRET não está definido corretamente' });
   }
 
-  const token = jwt.sign({ id: user?._id, email: user?.email }, process.env.JWT_SECRET, { expiresIn: '2m' });
+  const token = jwt.sign({ id: user?._id, email: user?.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
   res.json({ token });
 };
