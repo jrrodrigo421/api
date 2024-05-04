@@ -5,9 +5,11 @@ import userRoutes from './routes/userRoutes';
 import authRoutes from './routes/authRoutes';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
+import cors from 'cors';
+import registerRoutes from './routes/registerRoutes';
+
 
 const app = express();
-const cors = require('cors');
 
 const port = process.env.PORT || 3000;
 
@@ -28,6 +30,7 @@ dotenv.config();
 app.use('/api', professionalRoutes);
 app.use('/api', userRoutes);
 app.use('/api', authRoutes);
+app.use('/api', registerRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
