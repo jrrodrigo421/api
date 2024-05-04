@@ -15,18 +15,13 @@ export const loginAuth = async (req: Request, res: Response) => {
   console.log('imprimindo usuario', user);
   
   //TODO pra quando começar a cadastrar atravé do front
-  // if (!user || !bcrypt.compareSync(password, user.password as string)) {
-  //   console.log('entrou no if e vai tomar o 401');
-    
-  //   return res.status(401).json({ message: 'Credenciais inválidas' });
-  // }
-  
-  
-  if (user?.email != req.body.email || user?.password != req.body.password) {
+  if (!user || !bcrypt.compareSync(password, user.password as string)) {
     console.log('entrou no if e vai tomar o 401');
     
     return res.status(401).json({ message: 'Credenciais inválidas' });
   }
+  
+  
   
   console.log('typeOF typeof process.env.JWT_SECRET', typeof process.env.JWT_SECRET);
 
