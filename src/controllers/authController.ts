@@ -39,7 +39,7 @@ export const loginAuth = async (req: Request, res: Response) => {
   // }
   
   
-  if (user?.email != req.body.email && user?.password != req.body.password) {
+  if (user?.email != req.body.email || user?.password != req.body.password) {
     console.log('entrou no if e vai tomar o 401');
     
     return res.status(401).json({ message: 'Credenciais inválidas' });
