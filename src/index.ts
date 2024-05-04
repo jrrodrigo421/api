@@ -4,6 +4,7 @@ import professionalRoutes from './routes/professionalRoutes';
 import userRoutes from './routes/userRoutes';
 import authRoutes from './routes/authRoutes';
 import morgan from 'morgan';
+import dotenv from 'dotenv';
 
 const app = express();
 const cors = require('cors');
@@ -21,6 +22,7 @@ app.use(express.json());
 // Middleware para registrar logs de solicitação
 app.use(morgan('dev'));
 
+dotenv.config();
 
 // Rotas
 app.use('/api', professionalRoutes);
