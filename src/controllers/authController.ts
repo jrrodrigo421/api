@@ -14,7 +14,6 @@ export const loginAuth = async (req: Request, res: Response) => {
   
   console.log('imprimindo usuario', user);
   
-  //TODO pra quando começar a cadastrar atravé do front
   if (!user || !bcrypt.compareSync(password, user.password as string)) {
     console.log('entrou no if e vai tomar o 401');
     
