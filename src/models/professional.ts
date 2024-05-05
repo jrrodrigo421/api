@@ -14,4 +14,6 @@ const ProfessionalSchema: Schema = new Schema({
   availability: [{ type: String }],
 });
 
-export default mongoose.model('Professional', ProfessionalSchema);
+
+
+export default mongoose.model<Professional>('Professional', ProfessionalSchema);

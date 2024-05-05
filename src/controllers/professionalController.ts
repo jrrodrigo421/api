@@ -5,12 +5,19 @@ import ProfessionalModel, { Professional } from '../models/professional';
 export const getProfessionals = async (req: Request, res: Response) => {
   console.log('buscando profissionais');
   
+  const page = parseInt(req.query.page as string) || 1;
+  const limit = 5;
+  
   
   try {
-    const professionals = await ProfessionalModel.find();
-    var teste = res.json(professionals);
-  console.log('busca concluida');
-  console.log('Profissionais: ', professionals);
+    const totalProfessionals = await ProfessionalModel.countDocuments();
+    const totalPages = Math.ceil(totalProfessionals / limit);
+    const startIndex = (page - 1) * limit;
+    
+    const professionals = await ProfessionalModel.find().limit(limit).skip(startIndex);
+    res.json({totalPages, currentPage: page, professionals});
+    console.log('busca concluida');
+    console.log('Profissionais: ', professionals);
     
   } catch (error: any) {
     res.status(500).json({ message: error.message });
