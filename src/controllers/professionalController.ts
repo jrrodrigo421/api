@@ -14,7 +14,7 @@ export const getProfessionals = async (req: Request, res: Response) => {
     const totalPages = Math.ceil(totalProfessionals / limit);
     const startIndex = (page - 1) * limit;
     
-    const professionals = await ProfessionalModel.find().limit(limit).skip(startIndex);
+    const professionals = await ProfessionalModel.find().sort({ _id: -1 }).limit(limit).skip(startIndex);
     res.json({totalPages, currentPage: page, professionals});
     console.log('busca concluida');
     console.log('Profissionais: ', professionals);
